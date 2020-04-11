@@ -1,5 +1,4 @@
 <?php
-
 /**
  * MSF class.
  *
@@ -64,11 +63,18 @@ class MSF_Class {
     private function msf_define_constants() {
         DEFINE('MSF_PATH', dirname(MSF_FILE));
         DEFINE('MSF_URL', plugin_dir_url(MSF_FILE));
-        DEFINE('MSF_ASSETS', MSF_URL . 'assets');
-        DEFINE('MSF_CLASS', MSF_PATH . '/classes');
-        DEFINE('MSF_INCLUDES', MSF_PATH . '/includes');
-        DEFINE('MSF_ADMIN_TEMPLATES', MSF_PATH . 'includes/admin/templates');
-        DEFINE('MSF_FRONT_TEMPLATES', MSF_PATH . 'includes/front/templates');
+        DEFINE('MSF_ASSETS', MSF_URL . 'assets/');
+        DEFINE('MSF_ASSETS_JS', MSF_ASSETS . 'js/');
+        DEFINE('MSF_ASSETS_CSS', MSF_ASSETS . 'css/');
+        DEFINE('MSF_ASSETS_WEBFONTS', MSF_ASSETS . 'webfonts/');
+        DEFINE('MSF_IMAGES', MSF_ASSETS . 'images/');
+        DEFINE('MSF_CLASSES', MSF_PATH . '/classes/');
+        DEFINE('MSF_INCLUDES', MSF_PATH . '/includes/');
+        DEFINE('MSF_INCLUDES_ADMIN', MSF_INCLUDES . 'admin/');
+        DEFINE('MSF_INCLUDES_FRONT', MSF_INCLUDES . 'front/');
+        DEFINE('MSF_ADMIN_TEMPLATES', MSF_INCLUDES_ADMIN . 'templates/');
+        DEFINE('MSF_FRONT_TEMPLATES', MSF_INCLUDES_FRONT . 'templates/');
+        DEFINE('MSF_TEXTDOMAIN', 'Multi-step-form');
     }
 
     /**
@@ -77,6 +83,10 @@ class MSF_Class {
      * @return void
      */
     private function msf_includes() {
+        require_once MSF_CLASSES.'helper.php';
+        require_once MSF_CLASSES.'MSF_Install.php';
+        require_once MSF_INCLUDES_ADMIN.'MSF_Admin.php';
+        require_once MSF_INCLUDES_FRONT.'MSF_Front.php';
 
     }
 
@@ -89,8 +99,10 @@ class MSF_Class {
      */
     private function msf_instantiate() {
         if (is_admin()) {
-            new MSF_INSTALL();
+            new MSF_Install();
+            new MSF_Admin();
         }
+        new MSF_Front();
     }
 
     /**
