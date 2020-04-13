@@ -26,11 +26,11 @@ class MSF_shortcodes
         include_once 'templates/form_layout.php';
         wp_enqueue_style("range-slider");
         wp_enqueue_style("jquery-steps");
-        wp_enqueue_script('rangeSlider');
-        wp_enqueue_script('step-form');
         wp_enqueue_script('custom-js-validation');
         wp_enqueue_script('additional-methods');
         wp_enqueue_script('bootstrap-min-js');
+        wp_enqueue_script('rangeSlider');
+        wp_enqueue_script('step-form');
         wp_enqueue_script('front_script');
         $html = ob_get_contents();
         ob_clean();

@@ -81,7 +81,26 @@ jQuery(document).ready(function ($) {
             },
         }
     });
-
+    $range = $(".js-range-slider");
+    $square_meters = $(".square-meters");
+    $range.ionRangeSlider({
+        skin: "square",
+        type: "single",
+        min: 0,
+        max: 300,
+        from: 150,
+        grid: true,
+        postfix: "m<sup>2</sup>",
+        prettify: function (n) {
+            return transform(n);
+        },
+        onStart: function (data) {
+            $square_meters.prop("value", data.from);
+        },
+        onChange: function (data) {
+            $square_meters.prop("value", data.from);
+        }
+    });
 }, jQuery);
 setProgress = function (currstep) {
     var percent = parseFloat(100 / widget.length) * currstep;
@@ -97,26 +116,3 @@ function transform(n) {
     }
     return n;
 }
-$range = $(".js-range-slider");
-$square_meters = $(".square-meters");
-$range.ionRangeSlider({
-    skin: "square",
-    type: "single",
-    min: 0,
-    max: 300,
-    from: 150,
-    grid: true,
-    postfix: "m<sup>2</sup>",
-    prettify: function (n) {
-        return transform(n);
-    },
-    onStart: function (data) {
-        $square_meters.prop("value", data.from);
-    },
-    onChange: function (data) {
-        $square_meters.prop("value", data.from);
-    }
-});
-instance = $range.data("ionRangeSlider");
-
-
