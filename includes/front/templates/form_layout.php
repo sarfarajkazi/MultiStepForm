@@ -1,11 +1,21 @@
 <div class="bootstrap">
     <div class="row">
+        <?php
+        if (isset($_REQUEST['msg']) && $_REQUEST['msg'] == 'success') {
+            ?>
+            <div class="alert alert-success text-center" role="alert">
+                <label>Vielen Dank für Ihre Kostenüberprüfung! Sie erhalten von uns innerhalb eines Arbeitstages eine
+                    Antwort.</label>
+            </div>
+            <?php
+        }
+        ?>
         <form method="post" id="submission_form">
             <h5>Step 1</h5>
             <section class="step well">
                 <div class="middle">
                     <h4>
-                        Was ausgeräumt werden sollte?
+                        <?php _e("Was ausgeräumt werden sollte?", MSF_TEXTDOMAIN) ?>
                     </h4>
                     <label>
                         <input type="radio" value="Wohnung" name="cleared-out" checked/>
@@ -176,18 +186,30 @@
     </div>
 
 
-    <div class="row final-step-wrapper" style="display: none">
-        <section class="well">
-            <div class="middle">
-                <h4>
-                    Vielen Dank für Ihre Kostenüberprüfung!
-                </h4>
-                <p style="color: #000">
-                    Sie erhalten von uns innerhalb eines Arbeitstages eine Antwort.
-                </p>
-                <p style="color: #000">
-                    Um das Verfahren zu beschleunigen, können Sie mich direkt kontaktieren 01234567
-                </p>
+    <div class="row final-step-wrapper" style="display: none" >
+        <section class="well text-center">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>
+                        Vielen Dank für Ihre Kostenüberprüfung!
+                    </h4>
+                    <div class="image-wrapper" >
+                        <img class="img-responsive" style="width: 180px;margin: auto;margin-bottom: 25px;" src="<?php echo MSF_IMAGES . 'done.png' ?>">
+                    </div>
+                    <p style="color: #000">
+                        Sie erhalten von uns innerhalb eines Arbeitstages eine Antwort.
+                    </p>
+                    <p style="color: #000">
+                        Um das Verfahren zu beschleunigen, können Sie mich direkt kontaktieren 01234567
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <div class="image-wrapper-right">
+                        <img class="img-responsive" style="width: 180px;margin: auto" src="<?php echo MSF_IMAGES . 'user-2.png' ?>">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
             </div>
         </section>
     </div>
@@ -199,7 +221,9 @@
         </div>
         <div class="clearfix"></div>
     </div>
-
-
-
 </div>
+<!-- Google Analytics -->
+<script>
+
+</script>
+<!-- End Google Analytics -->

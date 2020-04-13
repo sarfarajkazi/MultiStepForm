@@ -3,6 +3,16 @@ jQuery.validator.addMethod("noSpace", function (value, element) {
     return value.trim() != "";
 }, "Please fill the box");
 jQuery(document).ready(function ($) {
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXX-Y', 'auto');
+    //UA-160196817-3
+    ga('send', 'FormView');
+
     form = jQuery("#submission_form");
     var current = 0;
     widget = $(".step");
@@ -27,6 +37,7 @@ jQuery(document).ready(function ($) {
             return form.valid();
         },
         onStepChanged: function (event, currentIndex, priorIndex) {
+            ga('send', 'event', 'step-form', 'Complete Step : '+currentIndex);
             setProgress(currentIndex);
             if (currentIndex === 2 && priorIndex === 3) {
                 form.steps("previous");
@@ -42,8 +53,8 @@ jQuery(document).ready(function ($) {
             form.hide();
             $(".final-step-wrapper").show();
             setTimeout(function () {
-                // form.submit();
-                alert("Form submitted...!!!")
+                // alert("Form submitted...!!!");
+                form.submit();
             },3000);
         }
     }).validate({

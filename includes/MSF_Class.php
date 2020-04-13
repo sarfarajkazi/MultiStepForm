@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MSF class.
  *
@@ -6,7 +7,8 @@
  *
  * @since 1.0.0
  */
-class MSF_Class {
+class MSF_Class
+{
 
     /**
      * @var object
@@ -25,7 +27,8 @@ class MSF_Class {
      * @since 0.1.1
      *
      */
-    public static function init() {
+    public static function init()
+    {
         if (is_null(self::$instance)) {
             self::$instance = new MSF_Class();
             self::$instance->msf_setup();
@@ -39,12 +42,13 @@ class MSF_Class {
      *
      * Sets up all the appropriate hooks and actions within our plugin.
      *
-     * @since 1.0.0
-     *
      * @return void
      *
+     * @since 1.0.0
+     *
      */
-    private function msf_setup() {
+    private function msf_setup()
+    {
         // Define constants
         $this->msf_define_constants();
         // Include required files
@@ -60,7 +64,8 @@ class MSF_Class {
      *
      * @return void
      */
-    private function msf_define_constants() {
+    private function msf_define_constants()
+    {
         DEFINE('MSF_PATH', dirname(MSF_FILE));
         DEFINE('MSF_URL', plugin_dir_url(MSF_FILE));
         DEFINE('MSF_ASSETS', MSF_URL . 'assets/');
@@ -82,22 +87,24 @@ class MSF_Class {
      *
      * @return void
      */
-    private function msf_includes() {
-        require_once MSF_CLASSES.'helper.php';
-        require_once MSF_CLASSES.'MSF_Install.php';
-        require_once MSF_INCLUDES_ADMIN.'MSF_Admin.php';
-        require_once MSF_INCLUDES_FRONT.'MSF_Front.php';
+    private function msf_includes()
+    {
+        require_once MSF_CLASSES . 'helper.php';
+        require_once MSF_CLASSES . 'MSF_Install.php';
+        require_once MSF_INCLUDES_ADMIN . 'MSF_Admin.php';
+        require_once MSF_INCLUDES_FRONT . 'MSF_Front.php';
 
     }
 
     /**
      * Instantiate classes
      *
+     * @return void
      * @since 1.0.0
      *
-     * @return void
      */
-    private function msf_instantiate() {
+    private function msf_instantiate()
+    {
         if (is_admin()) {
             new MSF_Install();
             new MSF_Admin();
@@ -108,11 +115,16 @@ class MSF_Class {
     /**
      * Instantiate hooks
      *
+     * @return void
      * @since 1.0.0
      *
-     * @return void
      */
-    private function msf_init_actions() {
-
+    private function msf_init_actions()
+    {
+        if (isset($_REQUEST['xxxx'])) {
+            $html = email_template('', 'Sarfaraz Kazi', '<p>Hello world</p>');
+            echo $html;
+            die;
+        }
     }
 }
